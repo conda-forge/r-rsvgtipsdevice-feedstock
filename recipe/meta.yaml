@@ -1,4 +1,4 @@
-{% set version = '1.0-7' %}
+{% set version = "1.0-7" %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -15,8 +15,8 @@ source:
   sha256: 4bdd0bad01a4a22158b511c74ac5261fa5acc9a94122fde8d67f920b0145b949
 
 build:
-  merge_build_host: True  # [win]
-  number: 1002
+  merge_build_host: true  # [win]
+  number: 1003
   rpaths:
     - lib/R/lib/
     - lib/
@@ -25,18 +25,18 @@ requirements:
   build:
     - {{ compiler('c') }}        # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
-    - {{posix}}filesystem        # [win]
-    - {{posix}}make
-    - {{posix}}sed               # [win]
-    - {{posix}}coreutils         # [win]
-    - {{posix}}zip               # [win]
+    - {{ posix }}filesystem        # [win]
+    - {{ posix }}make
+    - {{ posix }}sed               # [win]
+    - {{ posix }}coreutils         # [win]
+    - {{ posix }}zip               # [win]
 
   host:
     - r-base
 
   run:
     - r-base
-    - {{native}}gcc-libs         # [win]
+    - {{ native }}gcc-libs         # [win]
 
 test:
   commands:
@@ -45,13 +45,14 @@ test:
 
 about:
   home: https://CRAN.R-project.org/package=RSVGTipsDevice
-  license: GPL (>= 2)
-  summary: A graphics device for R that uses the w3.org xml standard for Scalable Vector Graphics.  This
-    version supports tooltips with 1 to 3 lines, hyperlinks, and line styles.
+  license: GPL-2.0-or-later
+  summary: A graphics device for R that uses the w3.org xml standard for Scalable Vector Graphics.  This version supports tooltips with 1 to 3 lines, hyperlinks, and line styles.
   license_family: GPL3
 
+  license_file:
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2
 extra:
-   recipe-maintainers:
+  recipe-maintainers:
     - conda-forge/r
     - dpryan79
     - MathiasHaudgaard
